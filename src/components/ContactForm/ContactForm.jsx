@@ -46,7 +46,8 @@ class ContactForm extends Component {
           Number
           <input
             className={css.formInput}
-            type="tel"
+            type="text"
+            // type="tel"
             name="number"
             value={number}
             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"

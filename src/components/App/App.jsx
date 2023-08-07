@@ -16,6 +16,8 @@ const INITIAL_STATE = {
   filter: '',
 };
 
+const LS_CONTACTS = 'contacts_list';
+
 class App extends Component {
   state = INITIAL_STATE;
 
@@ -51,6 +53,20 @@ class App extends Component {
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts.length !== this.state.contacts) {
+      localStorage.setItem(LS_CONTACTS, JSON.stringify(this.state.contacts));
+    }
+  }
+
+  componentDidMount() {
+    const savedContacts = localStorage.getItem(LS_CONTACTS);
+
+    if (savedContacts) {
+      this.setState({ contacts: JSON.parse(savedContacts) });
+    }
+  }
 
   render() {
     const {
